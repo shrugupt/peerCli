@@ -16,7 +16,7 @@ else
     $(cat ./azhlfTool/stores/wallets/$orgName/admin.$orgName-tls/admin.$orgName-tls | jq '.enrollment.identity.certificate' | tr -d '"' | sed 's/\\n/\n/g' > ./$orgName/tls/cert.pem)
     echo "Successfully setup MSP directory"
     export CORE_PEER_LOCALMSPID="$orgName"
-    export CORE_PEER_ADDRESS=$(cat ./azhlfTool/stores/connectionprofiles/$orgName.json | jq ".orderers[\"orderer1.$orgName\"].url" | sed 's/grpcs:\/\///g')
+    export CORE_PEER_ADDRESS=$(cat ./azhlfTool/stores/connectionprofiles/$orgName.json | jq ".peers[\"peer1.$orgName\"].url" | sed 's/grpcs:\/\///g')
     export CORE_PEER_ID=peercli
     export CORE_PEER_TLS_ENABLED="true"
     export CORE_PEER_TLS_ROOTCERT_FILE=$(pwd)/$orgName/msp/tlscacerts/ca.crt
